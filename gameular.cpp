@@ -11,6 +11,29 @@ int tailLength = 1;
 int tailX[100], tailY[100];
 int fruitX, fruitY;
 bool game = true;
+int level = 1; // level awal agar bertambah trus
+int speed = 200; // kecepatatan awal untuk level 1
+
+
+void MengaturLevel() {//ini unutk mengatur keceptan level
+    switch (level) {
+        case 1:
+            speed = 200;
+            break;
+        case 2:
+            speed = 150;
+            break;
+        case 3:
+            speed = 100;
+            break;
+        case 4:
+        	speed = 50;
+        	break;
+        default:
+            break;
+        }
+    }
+
 
 void Console() {
     if (kbhit()) {
@@ -91,12 +114,25 @@ void Algorithm() {
         game = false;
     }
 }
+  if (score >= 3 && level == 1) { // contoh: naik level saat skor mencapai 6 pada level 1
+        level = 2; 
+		}
+    if(score >= 6 && level == 2){
+    	level = 3; 
+		}
+	if(score >= 9 && level ==3){
+		level = 4;
+	}
+        MengaturLevel(); // Mengatur kecepatan sesuai level yang baru
+}
 
 int main() {
     // Initialize ncurses
     initscr();
     noecho();  // Don't display typed characters
     curs_set(0);  // Hide the cursor
+    int level = 1; // level awal
+    int speed = 200; // kecepatan awa
 
     getmaxyx(stdscr, maxY, maxX);
 
