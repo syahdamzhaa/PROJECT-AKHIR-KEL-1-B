@@ -1,9 +1,20 @@
 #include <iostream>
+#include <fstream>
 #include <conio.h>
 #include <windows.h>  
 #include <ncurses/ncurses.h>
 
+
 using namespace std;
+char audiofile[]={"C:/Users/syahd/Downloads/dry-fart.wav"};
+string audiofile2;
+
+char mariobross[]={"C:/Users/syahd/Downloads/mariobross.wav"};
+string mariobross2;
+
+char mariodead[]={"C:/Users/syahd/Downloads/1211mariodead.wav"};
+string mariodead2;
+fstream fp;
 
 int maxX,maxY,x,y;
 bool game = true;
@@ -14,7 +25,6 @@ int tailLength = 1;
 int tailX[100],tailY[100];
 int level = 1; // level awal agar bertambah trus
 int speed = 200; // kecepatatan awal untuk level 1
-
 
 
 void LoadingScreen() {
@@ -33,7 +43,7 @@ void GameOverScreen() {
     clear();
     attron(A_BOLD);
     attron(COLOR_PAIR(2));
-    mvprintw(maxY / 2 - 1, (maxX / 2) - 10, "GAMEE GAJEELASSSSS!");
+    mvprintw(maxY / 2 - 1, (maxX / 2) - 15 , "AKU MAU KITA LEBIH DARI TEMEN!");
     attroff(COLOR_PAIR(2));
     attroff(A_BOLD);
     refresh();
@@ -66,8 +76,13 @@ void MengaturLevel() {//ini unutk mengatur keceptan level
 
 void AwalMasukGame() {
     clear();
+    fp.open(mariobross, ios::in);
+    mariobross2 = mariobross;
+	PlaySound(mariobross2.c_str(), NULL, SND_ASYNC);
+	fp.close();
+
     attron(A_BOLD); // Mengaktifkan teks tebal
-    mvprintw(maxY / 2 - 2, (maxX / 2) - 10, "Selamat Datang di Game 'ULAR SI MATA DUITAN'");
+    mvprintw(maxY / 2 - 2, (maxX / 2) - 10, "Selamat Datang di Game 'ULAR SI STARBOY'");
     attroff(A_BOLD); // Menonaktifkan teks tebal
     mvprintw(maxY / 2, (maxX / 2) - 20, "Tekan 'S' untuk memulai permainan.");
     mvprintw(maxY - 2, 2, "Tekan 'X' untuk keluar.");
@@ -90,7 +105,7 @@ void About() {
     clear();
     attron(A_BOLD);
     attron(COLOR_PAIR(2));
-    mvprintw(maxY / 2 - 2, (maxX / 2) - 18, "'Catch the #' adalah game ular sederhana ");
+    mvprintw(maxY / 2 - 2, (maxX / 2) - 18, "'Ular si starboy' adalah game ular sederhana ");
     mvprintw(maxY / 2 - 1, (maxX / 2) - 18, "'d' Agar ular ke kanan");
     mvprintw(maxY / 2 , (maxX / 2) - 18, "'a' Agar ular ke kiri");
     mvprintw(maxY / 2 + 1, (maxX / 2) - 18, "'w' Agar ular ke atas");
@@ -119,11 +134,10 @@ void Draw(){
     wrefresh(win);
     mvprintw(y,x,"@");
     mvprintw(fruitY,fruitX,"<3");
-    NampilinSkorBaris(); // Menampilkan skor dan status permainan
-       
-    
+    NampilinSkorBaris(); // Menampilkan skor dan status permainan 
     for(int i=0;i<tailLength;i++){
-        mvprintw(tailY[i],tailX[i],"o");
+    	
+    mvprintw(tailY[i],tailX[i],"o");
     }
     refresh();
     Sleep(speed);
@@ -142,6 +156,7 @@ void Console(){
 }
 
 void Algorithm(){
+ 
     int prevX = tailX[0];
     int prevY = tailY[0];
     int prevX2,prevY2;
@@ -166,6 +181,10 @@ void Algorithm(){
     	if (x - fruitX >=0 && x-fruitX < 3){
         fruitX = rand() % maxX;
         fruitY=1;
+    fp.open(audiofile, ios::in);
+	audiofile2 = audiofile;
+	PlaySound(audiofile2.c_str(), NULL, SND_ASYNC);
+	fp.close();
         score++;
         tailLength++;
     }
@@ -250,6 +269,10 @@ int main(){
         Console();
         Algorithm();
     }while(game);//BAGIAN FELIZA
+    fp.open(mariodead, ios::in);
+    mariodead2 = mariodead;
+	PlaySound(mariodead2.c_str(), NULL, SND_ASYNC);
+	fp.close();
     mvprintw(maxY/2,(maxX/2)-12,"Kamu ga salah kok,gamenya salah!!");
    
     refresh();
