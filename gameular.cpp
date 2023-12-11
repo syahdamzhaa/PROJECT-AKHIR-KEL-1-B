@@ -14,6 +14,25 @@ bool game = true;
 int level = 1; // level awal agar bertambah trus
 int speed = 200; // kecepatatan awal untuk level 1
 
+void LoadingScreen() {
+    clear();
+    attron(A_BOLD);
+    mvprintw(maxY / 2, (maxX / 2) - 11, "Loading ya sayangg<3...");
+    attroff(A_BOLD);
+    refresh();
+
+    Sleep(3000); // ini untuk delay loadingnya 3 detik 
+}
+
+void AwalMasukGame() {
+    clear();
+    attron(A_BOLD); // ini untuk aktifin teks tebal
+    mvprintw(maxY / 2 - 2, (maxX / 2) - 10, "Selamat Datang di Game 'ULAR SI MATA DUITAN'");
+    attroff(A_BOLD); // ini non aktif teks tebal
+    mvprintw(maxY / 2, (maxX / 2) - 20, "Tekan 'S' untuk memulai permainan.");
+    mvprintw(maxY - 2, 2, "Tekan 'X' untuk keluar.");
+    refresh();
+}
 
 void MengaturLevel() {//ini unutk mengatur keceptan level
     switch (level) {
@@ -131,7 +150,9 @@ int main() {
     initscr();
     noecho();  // Don't display typed characters
     curs_set(0);  // Hide the cursor
-    int level = 1; // level awal
+    
+    AwalMasukGame();
+	int level = 1; // level awal
     int speed = 200; // kecepatan awa
 
     getmaxyx(stdscr, maxY, maxX);
