@@ -6,13 +6,13 @@
 
 
 using namespace std;
-char audiofile[]={"C:/Users/syahd/Downloads/dry-fart.wav"};
+char audiofile[]={"C:/Users/syahd/OneDrive/Documents/GitHub/PROJECT-AKHIR-KEL-1-B/dry-fart.wav"};
 string audiofile2;
 
-char mariobross[]={"C:/Users/syahd/Downloads/mariobross.wav"};
+char mariobross[]={"C:/Users/syahd/OneDrive/Documents/GitHub/PROJECT-AKHIR-KEL-1-B/mariobross.wav"};
 string mariobross2;
 
-char mariodead[]={"C:/Users/syahd/Downloads/1211mariodead.wav"};
+char mariodead[]={"C:/Users/syahd/OneDrive/Documents/GitHub/PROJECT-AKHIR-KEL-1-B/1211mariodead.wav"};
 string mariodead2;
 fstream fp;
 
